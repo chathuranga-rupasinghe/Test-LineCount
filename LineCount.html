@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container-wrapper">
+      <div class="header-container">
+        <h2>Change the box count to get possible lines drawable</h2>
+      </div>
+      <div>
+        <label>Horizontal box count:</label>
+        <input id="horizontal" type="number" />
+      </div>
+      <div class="input-container">
+        <label>Vertical box count:</label>
+        <input id="vertical" type="number" />
+      </div>
+      <button
+        onClick="lineCount(parseInt(document.getElementById('horizontal').value||'0'), parseInt(document.getElementById('vertical').value||'0'))"
+      >
+        Check Value
+      </button>
+      <div class="count-wrapper">
+        <h2>The number of possible lines:</h2>
+        <h2 id="count"></h2>
+      </div>
+    </div>
+    <script>
+      const lineCount = (horizontal, vertical) => {
+        const horizontalLineCount =
+          horizontal > 2 ? vertical * (horizontal - 2) : 0;
+
+        const verticalLineCount =
+          vertical > 2 ? horizontal * (vertical - 2) : 0;
+
+        const diagonalLineCount =
+          vertical > 2 && horizontal > 2
+            ? 2 * (horizontal - 2) * (vertical - 2)
+            : 0;
+
+        const noOfPossibleLines =
+          horizontalLineCount + verticalLineCount + diagonalLineCount;
+
+        document.getElementById("count").innerHTML = noOfPossibleLines;
+      };
+    </script>
+    <style>
+      input {
+        height: 20px;
+        padding: 10px;
+      }
+      .input-container {
+        margin: 10px 0 20px;
+      }
+      .container-wrapper {
+        padding: 25px;
+        margin: 0 30%;
+        border: solid 1px green;
+      }
+      label {
+        width: 150px;
+        display: inline-block;
+      }
+      h2 {
+        display: inline-block;
+        margin: 10px 0;
+      }
+      .count-wrapper {
+        text-align: right;
+      }
+      .header-container {
+        padding: 20px;
+        text-align: center;
+      }
+      button {
+        padding: 10px;
+        background: green;
+        border: none;
+        border-radius: 5px;
+        color: white;
+      }
+    </style>
+  </body>
+</html>
